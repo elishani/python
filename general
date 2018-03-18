@@ -1,0 +1,2 @@
+python --version
+virtualenv venv  # for creating python 2.7 envirounment
