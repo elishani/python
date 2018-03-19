@@ -1,3 +1,7 @@
 python --version
 virtualenv venv  # for creating python 2.7 envirounment
 source venv/bin/activate 
+
+yum install epel-release  # install EPEL
+yum -y install python-pip  # install pip
+pip install flask
