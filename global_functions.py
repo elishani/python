@@ -21,8 +21,7 @@ def get_para_value(filename, string_to_find, para=None):
                         for line_file in f:
                                 array_file.append(line_file)
         except Exception:
-                print("\n***ERROR:  Could not open file %s\n" %(filename))
-                sys.exit(1)
+                print("Could not open file %s\n" %(filename))
 
         i = 0
         while i < len(array_file):
@@ -31,23 +30,28 @@ def get_para_value(filename, string_to_find, para=None):
                         line = None
                         next
                 if line != None:
-                        if string_to_find in line:
+                        line = " " + line
+                        exect_string_to_find = " " + string_to_find
+                        if exect_string_to_find in line:
                                  break
                         else:
                                 line = None
                 i += 1
 
         if not line:
-                raise  "***ERROR: Parameter '%s' is not defined. Please check log file for detailed description" % (string_to_find)
+                raise  Exception (string_to_find + " Is not in file")
 
         line = re.sub( '\s+', ' ', line ).strip()
         line = line.replace(" =", "=").replace("= ", "=")
         line = line + " "
-        pattern = para + "=.+ "
+        pattern = " " + para + "=.+ "
         left_list = re.findall(pattern, line)
+        if not left_list:
+                raise  Exception (para + " Parameter is not found or dosen't have value.")
+
         para_value = str(left_list[0].split()[0])
         value_str = para_value.split("=",1)[1]
         if not value_str:
-                raise  "***ERROR: Parameter '%s' has no value. Please check log file for detailed description" % (value_str)
+                raise  Exception (value_str + " Has no value.")
 
         return value_str
