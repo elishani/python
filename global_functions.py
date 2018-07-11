@@ -43,7 +43,7 @@ def get_para_value(filename, string_to_find, para=None):
 
         line = re.sub( '\s+', ' ', line ).strip()
         line = line.replace(" =", "=").replace("= ", "=")
-        line = line + " "
+        line = " " + line + " "
         pattern = " " + para + "=.+ "
         left_list = re.findall(pattern, line)
         if not left_list:
