@@ -1,9 +1,8 @@
 import re
-import sys
 
 def get_para_value(filename, string_to_find, para=None):
 
-        '''     Get paramter string in file "para = value" and return is value
+        """     Get parameter string in file "para = value" and return is value
                 with allot of  variations:
                 stringA para = value
                 stringA stringB para = value stringC
@@ -11,9 +10,9 @@ def get_para_value(filename, string_to_find, para=None):
                 para = value
                 para  = value
                 para =    value
-        '''
-        if  para == None  : para = string_to_find
-        string_to_find = string_to_find.lstrip()
+        """
+        if  para is None :
+                para = string_to_find.lstrip()
 
         array_file = []
         try:
@@ -29,10 +28,10 @@ def get_para_value(filename, string_to_find, para=None):
                 if line.startswith('#'):
                         line = None
                         next
-                if line != None:
+                if line is None:
                         line = " " + line
-                        exect_string_to_find = " " + string_to_find
-                        if exect_string_to_find in line:
+                        exact_string_to_find = " " + string_to_find
+                        if exact_string_to_find in line:
                                  break
                         else:
                                 line = None
@@ -47,7 +46,7 @@ def get_para_value(filename, string_to_find, para=None):
         pattern = " " + para + "=.+ "
         left_list = re.findall(pattern, line)
         if not left_list:
-                raise  Exception (para + " Parameter is not found or dosen't have value.")
+                raise  Exception (para + " Parameter is not found or dose not have value.")
 
         para_value = str(left_list[0].split()[0])
         value_str = para_value.split("=",1)[1]
