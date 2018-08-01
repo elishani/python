@@ -1,32 +1,48 @@
 import subprocess
 
 ipmitool = "/usr/bin/ipmitool"
-get_ipmitool = "lan print"
-setipmitool = "lan print"
-get = "get"
-set = "set"
-dhcp_static = "IP Address Source"
-ipaddr = "IP Address"
-netmask = "Subnet Mask"
-default_gateway = "Default Gateway IP"
+set_ipmitool = "lan set 1"
 
-def ipmitool_lan(set_get, cmd, para = None):
+get_dhcp_static = "IP Address Source"
+get_ipaddr = "IP Address"
+get_netmask = "Subnet Mask"
+get_default_gateway = "Default Gateway IP"
 
-        ipmi_cmd = ipmitool + " " + cmd
-        if set_get == "get":
-                proc = subprocess.Popen(ipmi_cmd.split(), stdout=subprocess.PIPE)
-                for line in proc.stdout.readlines():
-                        if line.startswith(para + "  "):
-                                value_str = line.split(":",1)[1]
-                                value_str = value_str.split()[0]
-                                break
+set_ipsrc = "ipsrc"
+set_ipaddr = "ipaddr"
+set_netmask = "netmask"
+set_defgw = "defgw ipaddr"
+dhcp = "dhcp"
+static = "static"
+
+def get_ipmitool_lan(para):
+        """ Get inforamtion on RMM lan """
+        ipmi_cmd = ipmitool + " lan print"
+        proc = subprocess.Popen(ipmi_cmd.split(), stdout=subprocess.PIPE)
+        for line in proc.stdout.readlines():
+                if line.startswith(para + "  "):
+                        value_str = line.split(":",1)[1]
+                        value_str = value_str.split()[0]
+                        break
         return value_str
 
-# DHCP_STATIC = ipmitool_lan(get, get_ipmitool, dhcp_static)
-# print "DHCP_STATIC = " + str(DHCP_STATIC)
-# IPADDR = ipmitool_lan(get, get_ipmitool, ipaddr)
-# print "IPADDR = " + str(IPADDR)
-# NETMASK = ipmitool_lan(get, get_ipmitool, netmask)
-# print "NETMASK = " + str(NETMASK)
-# DEFULT_GATEWAY = ipmitool_lan(get, get_ipmitool, default_gateway)
-# print "DEFULT_GATEWAY = " + str(DEFULT_GATEWAY)
+def set_ipmitool_lan(para, valu_para):
+        """ Set parameter on RMM lan """
+        ipmi_cmd = ipmitool + " lan set 1 " + para + " " + valu_para
+        p = subprocess.Popen(ipmi_cmd.split(), stdout=subprocess.PIPE)
+        output, err = p.communicate()
+        print "out ", output
+        print "error ", err
+
+
+print "DHCP_STATIC = " + str(get_ipmitool_lan(get_dhcp_static))
+print "IPADDR = " + str(get_ipmitool_lan(get_ipaddr))
+print "NETMASK = " + str( get_ipmitool_lan(get_netmask))
+print "DEFULT_GATEWAY = " + str( get_ipmitool_lan(get_default_gateway))
+
+set_ipmitool_lan(set_ipsrc, static)
+print "DHCP_STATIC = " + str(get_ipmitool_lan(get_dhcp_static))
+
+set_ipmitool_lan(set_ipsrc, dhcp)
+print "DHCP_STATIC = " + str(get_ipmitool_lan(get_dhcp_static))
+
