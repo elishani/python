@@ -63,12 +63,10 @@ def choose_bootproto(bootproto_to_set):
 
         return  bootproto_to_set
 
-def set_ip_gateway_and_netmask(nic_parameters, bootproto_to_set):
+def set_ip_gateway_and_netmask(nic_parameters):
     """ Enter ip netmask and default geteway and dhcp """
 
     nic_config = []
-
-    if bootproto_to_set == "dhcp": return
 
     while True:
         code, nic_config = d.form("RMM Configuration", [
@@ -126,7 +124,7 @@ bootproto_to_set = choose_bootproto(dhcp_static)
 
 if bootproto_to_set == "static":
 
-    nic_config = set_ip_gateway_and_netmask(nic_parameters, bootproto_to_set)
+    nic_config = set_ip_gateway_and_netmask(nic_parameters)
     set_ipmitool_lan(set_ipaddr, str(nic_config[0]))
     set_ipmitool_lan(set_netmask, str(nic_config[1]))
     set_ipmitool_lan(set_defgw, str(nic_config[2]))
