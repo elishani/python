@@ -93,7 +93,7 @@ def set_ip_gateway_and_netmask(nic_parameters):
 
 
 def get_ipmitool_lan(para):
-    """ Get inforamtion on RMM lan """
+    """ Get information on RMM lan """
 
     ipmi_cmd = ipmitool + " lan print"
     proc = subprocess.Popen(ipmi_cmd.split(), stdout=subprocess.PIPE)
