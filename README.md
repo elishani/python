@@ -5,10 +5,8 @@
 [APP_VERSION]
 # Change the application version here
 application_version = 10.2.3.4.5
-
 [TAR_DIRECTORY]
 tar_directory = /tmp
-
 [TAR_FILES]
 eli =  /tmp/elishani
 eli1 = /tmp/elishani1
