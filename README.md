@@ -1,3 +1,5 @@
+<h3>install pip offline<h3>
+https://unix.stackexchange.com/questions/547447/how-to-install-pip-without-network-or-internet
 <h1>create_tar_files.py</h1>
 
 <h2>Config file</h2>
