@@ -1,5 +1,8 @@
 <h3>install pip offline<h3>
 https://unix.stackexchange.com/questions/547447/how-to-install-pip-without-network-or-internet
+<h3>Dwonload and install moudle in offline>
+https://gist.github.com/prateek/525d14823c3df3ee9472
+  
 <h1>create_tar_files.py</h1>
 
 <h2>Config file</h2>
