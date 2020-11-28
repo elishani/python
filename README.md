@@ -1,6 +1,6 @@
-<h6>create_tar_files.py</h6>
+<h1>create_tar_files.py</h1>
 
-<h5>Config file</h5>
+<h2>Config file</h2>
 <pre>
 [APP_VERSION]
 # Change the application version here
@@ -15,7 +15,7 @@ eli1 = /tmp/elishani1
 eli2 = /tmp/elishani2
 </pre>
 <br>
-<h5>Output run csript</h5>
+<h2>Output run csript</h2>
 
 ***** START creating tar files
 
