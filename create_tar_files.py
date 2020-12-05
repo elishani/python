@@ -9,7 +9,7 @@ config = configparser.ConfigParser()
 def make_tarfile(tar_directory, output_filename, source_dir, app_version):
   app_tar = output_filename + "_" + app_version + ".tgz"
   app_dir = tar_directory + "/" + source_dir
-  print "*** Creating tar file '" + app_tar + "' from dirctory  '" + app_dir + "'"
+  print(f"*** Creating  tar file '{app_tar}' from dirctory '{app_dir}')
   with tarfile.open(app_tar, "w:gz") as tar:
     tar.add(app_dir, arcname=os.path.basename(app_dir))
 
