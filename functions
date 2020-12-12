@@ -1,0 +1,17 @@
+# Get lines section '[section]' from config file to aother file
+
+def copy_section(conf, file, section):
+  sectionFlag = 0
+  section_delimeter ="[" + section + "]"
+  with open(conf) as conf_file :
+    with open(file, "w") as output_file:
+      for line in conf_file :
+        line_no_new_line = line.rstrip()
+        if line_no_new_line == section_delimeter and  sectionFlag == 0:
+          sectionFlag = 1
+          continue
+        if sectionFlag == 1:
+          if not line_no_new_line.startswith('['):
+            output_file.write(line)
+          else:
+            return
