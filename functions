@@ -31,3 +31,13 @@ def check_sections_in_conf_file(conf):
       print(f"***ERROR: duplicate section names")
     else:
      print(f"No error founds")
+
+# Find string that start [ and alfa
+
+import re
+
+def find():
+  string = '[kuku]'
+  if re.match("^\[[a-zA-Z]+.*", string):
+    print(f"string '{string}'")
+    
