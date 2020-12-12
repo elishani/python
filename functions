@@ -15,3 +15,19 @@ def copy_section(conf, file, section):
             output_file.write(line)
           else:
             return
+
+
+# Check section names repeating in config file
+
+def check_sections_in_conf_file(conf):
+  list_del = []
+  with open(conf) as f:
+    for line in f:
+      line = line.strip()
+      if line.startswith('[') and line.endswith(']'):
+        list_del.append(line)
+    print(f"Section list = '{','.join(list_del)}'")
+    if len(list_del) != len(set(list_del)):
+      print(f"***ERROR: duplicate section names")
+    else:
+     print(f"No error founds")
