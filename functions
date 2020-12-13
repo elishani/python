@@ -41,3 +41,37 @@ def find():
   if re.match("^\[[a-zA-Z]+.*", string):
     print(f"string '{string}'")
     
+# Create directory if not exists
+
+import os
+from pathlib import Path
+from shutil import copyfile
+
+
+ansible_roles_dir = "/opt/ansible/roles"
+
+
+def check_if_dir_not_exists_create_it(directorypath):
+  print(f"**Check if directory exists '{directorypath}'")
+  print(f"{Path(directorypath).is_dir()}")
+  if Path(directorypath).is_dir():
+    print(f"Directory exists")
+  else:
+    print(f"Creating directory")
+    os.makedirs(directorypath, 755)
+
+def create_role(role_name):
+  
+  print(f"Create role '{role_name}'")
+  print(f"**Create role directory '{role_name}'")
+  role_dir = ansible_roles_dir + '/' + role_name + '/task'
+  role_file = role_dir + '/main.yaml'
+  tmp_file = '/tmp/role'
+  
+  check_if_dir_not_exists_create_it(role_dir)
+  
+  print(f"**Create role file '{role_file}'")
+  copyfile(tmp_file, role_file)
+  
+  
+create_role("kuku")
