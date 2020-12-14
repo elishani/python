@@ -75,3 +75,19 @@ def create_role(role_name):
   
   
 create_role("kuku")
+
+
+# create list
+
+import re
+
+pattern = "^\[role:.*\]"
+
+role_list=[]
+file = open("/tmp/text", "r")
+for line in file:
+    if re.search(pattern, line):
+        line.rsplit()
+        line=line[6:-2]
+        role_list.append(line)
+        print(role_list)
