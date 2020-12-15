@@ -68,6 +68,12 @@ def create_role(role_name):
   role_file = role_dir + '/main.yaml'
   tmp_file = '/tmp/role'
   
+  # source file
+  with open("./file1.py") as fd:
+  exec(fd.read())
+  # or 
+  exec(open("file1.py").read())
+  
   check_if_dir_not_exists_create_it(role_dir)
   
   print(f"**Create role file '{role_file}'")
