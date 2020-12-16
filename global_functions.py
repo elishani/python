@@ -54,3 +54,25 @@ def get_para_value(filename, string_to_find, para=None):
                 raise  Exception (value_str + " Has no value.")
 
         return value_str
+#File
+v = "ppppp"
+v2 = "lllll"
+with open("file.txt") as f:
+  for line in f:
+    line = line.strip()
+    eval(line)
+  print(f"'{v}'")
+  print(f"'{v2}'")
+        
+ new_str="123"
+fileout="temp"
+fo=open("temp", 'w')
+fi=open("file.txt")
+for line in fi:
+  if line.startwith("# roles") or line.startwith("roles"):
+    line = new_str
+    fo.write(line+"\n")
+  else:
+    fo.write(line)
+fo.close()
+fi.close()
