@@ -76,3 +76,12 @@ for line in fi:
     fo.write(line)
 fo.close()
 fi.close()
+
+stations_list=[]
+with open("file.txt") as fi:
+  for line in fi:
+    line.rstrip()
+    print(line)
+    if line.startswith('a'):
+      stations_list.append(line)
+print(stations_list)
