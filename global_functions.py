@@ -1,5 +1,8 @@
 import re
 
+
+
+
 def get_para_value(filename, string_to_find, para=None):
 
         """     Get parameter string in file "para = value" and return is value
