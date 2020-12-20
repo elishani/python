@@ -1,20 +1,38 @@
-# Get lines section '[section]' from config file to aother file
+import shutil
 
-def copy_section(conf, file, section):
-  sectionFlag = 0
-  section_delimeter ="[" + section + "]"
-  with open(conf) as conf_file :
-    with open(file, "w") as output_file:
-      for line in conf_file :
-        line_no_new_line = line.rstrip()
-        if line_no_new_line == section_delimeter and  sectionFlag == 0:
-          sectionFlag = 1
-          continue
-        if sectionFlag == 1:
-          if not line_no_new_line.startswith('['):
-            output_file.write(line)
-          else:
-            return
+file = "./conf.txt"
+
+def replace_string_replace_whole_line(file, string, new_line):
+  print(f"Replace line which icludes string='{string}' with line='{new_line}' in file '{file}'")
+  
+  temp_file = "temp"
+  shutil.copyfile(file, temp_file)
+  in_file = open(temp_file, 'r')
+  out_file = open(file, 'w')
+  for line in in_file:
+    line = line.rstrip()
+    if string in line:
+      line = new_line
+    out_file.write(line + "\n")
+  in_file.close()
+  out_file.close()
+  
+
+def show_file(file):
+  print(f"Show file '{file}'")
+  with open(file) as f:
+    print(f.read())
+
+
+def main():
+  print("run maim")
+  show_file(file)
+  replace_string_replace_whole_line(file, "roles_path =", "roles_path = /tmp/gg/")
+  show_file(file)
+  
+if __name__ == '__main__':
+  main()
+
 
 
 # Check section names repeating in config file
