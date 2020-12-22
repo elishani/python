@@ -1,9 +1,10 @@
+import os
 conf = "./conf.txt"
 
-def copy_section(section, output_file, remark_line="no", empty_line="no", end_line="no"):
+def copy_section(section, output_file, remark_line="no", empty_line="no", end_section="no"):
   print(f"Get section '{section}' from file '{conf}' results in file '{output_file}'")
-  print(f"OPTIONS: remark_line='{remark_line}' empty_line='{empty_line}' end_line='{end_line}'")
-   
+  print(f"OPTIONS: remark_line='{remark_line}' empty_line='{empty_line}' end_section='{end_section}'")
+  
   sectionFlag = 0
   section_header ="[" + section + "]"
   with open(conf) as in_file:
@@ -15,7 +16,7 @@ def copy_section(section, output_file, remark_line="no", empty_line="no", end_li
           sectionFlag = 1
           continue
         if sectionFlag == 1:
-          if line.startswith('[') and end_line == "no":
+          if line.startswith('[') and end_section == "no":
             break
           if line.startswith('[END-SECTION]'):
             break
@@ -24,6 +25,9 @@ def copy_section(section, output_file, remark_line="no", empty_line="no", end_li
           if line == '' and empty_line == "no":
             continue
           out_file.write(line + "\n")
+  
+  if os.path.getsize(output_file) == 0:
+    raise Exception(f"***ERROR: Section '{section}' is empty")
 
 def show_file(file):
   print(f"Show file '{file}'")
@@ -35,16 +39,16 @@ def main():
   print("run maim")
   copy_section("kuku", out_txt)
   show_file(out_txt)
-  copy_section("kuku", out_txt, remark_line="yes")
-  show_file(out_txt)
-  copy_section("kuku", out_txt, empty_line="yes")
-  show_file(out_txt)
-  copy_section("kuku", out_txt, end_line="yes")
-  show_file(out_txt)
-  copy_section("kuku", out_txt, remark_line="yes", empty_line="yes")
-  show_file(out_txt)
-  copy_section("kuku", out_txt, remark_line="yes", empty_line="yes", end_line="yes")
-  show_file(out_txt)
+  #copy_section("kuku", out_txt, remark_line="yes")
+  #show_file(out_txt)
+  #copy_section("kuku", out_txt, empty_line="yes")
+  #show_file(out_txt)
+  #copy_section("kuku", out_txt, end_section="yes")
+  #show_file(out_txt)
+  #copy_section("kuku", out_txt, remark_line="yes", empty_line="yes")
+  #show_file(out_txt)
+  #copy_section("kuku", out_txt, remark_line="yes", empty_line="yes", end_section="yes")
+  #show_file(out_txt)
   
 if __name__ == '__main__':
   main()
