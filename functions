@@ -1,3 +1,24 @@
+def found_multi_in_string( string, multi):
+
+  matches = multi.split()
+
+  if any(x in string for x in matches):
+    return True
+  else:
+    return False
+
+
+station_group = "HOST"
+string = "playbook:check_hosts:ALL:role:root"
+multi = ":ALL:" + ' ' + ':' + station_group + ':'
+
+if found_multi_in_string( string, multi):
+  print(f"found")
+else:
+  print(f"no found")
+
+
+
 import shutil
 
 file = "./conf.txt"
